@@ -2,8 +2,7 @@
 
 ;;; Commentary:
 ;;; Code:
-;; set nix-dotfiles path
-(defvar config-path (expand-file-name "~/nix-dotfiles/modules/emacs")
+(defvar config-path (expand-file-name "~/emacs")
   "Path to nix-dotfiles.")
 (load (expand-file-name "core/core.configuration.el" config-path))
 (load (expand-file-name "core/core.straight.el" config-path))
@@ -24,13 +23,6 @@
 (load (expand-file-name "languages/lang.solidity.el" config-path))
 (load (expand-file-name "languages/lang.javascript.el" config-path))
 (load (expand-file-name "languages/lang.markdown.el" config-path))
-
-;;(dolist (mode '(org-mode-hook
-;;                term-mode-hook
-;;	        eshell-mode-hook))
-;;  (add-hook mode (lambda () (display-line-numbers-mode 0))))
-
-;;(setq use-package-always-ensure t)
 
 (use-package which-key
   :diminish which-key-mode
@@ -77,14 +69,6 @@
   :config
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
-
-;; solidity LSP
-;;(after! eglot
-;;  (add-to-list 'eglot-server-programs
-;;               '(solidity-mode . ("nomicfoundation-solidity-language-server" "--stdio"))))
-
-(use-package vterm
-   :straight t)
 
 (provide 'init.el)
 ;;; init.el ends here

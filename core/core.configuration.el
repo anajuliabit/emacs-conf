@@ -99,7 +99,11 @@
 
 ;; Enable line numbers
 (global-display-line-numbers-mode nil)
-(add-hook 'prog-mode 'display-line-numbers--turn-on)
+(dolist (mode '(org-mode-hook
+                term-mode-hook
+                vterm-mode-hook
+                eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;; Highlight current line
 (global-hl-line-mode t)

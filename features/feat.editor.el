@@ -27,10 +27,6 @@
    ("C-c g" . counsel-ag)
    ("C-x C-f" . counsel-find-file)))
 
-(use-package counsel-projectile
-  :straight t
-  :after projectile)
-
 ;;; ivy - generic completion frontend
 (use-package ivy
   :straight t
@@ -91,85 +87,44 @@
   :diminish projectile-mode
   :config
   (projectile-mode t)
+  (require 'projectile)
+  (use-package counsel-projectile
+    :bind (("s-p" . counsel-projectile)
+           ("s-f" . counsel-projectile-find-file)
+           ("s-b" . counsel-projectile-switch-to-buffer)))
+  (setq projectile-use-git-grep t)
+  (setq projectile-completion-system 'ivy)
   (add-to-list 'projectile-globally-ignored-directories "node_modules")
   (add-to-list 'projectile-globally-ignored-directories "lib")
   (add-to-list 'projectile-globally-ignored-directories "out")
-  :bind (:map projectile-mode-map
-              ("s-p" . projectile-command-map)
-              ("C-c p" . projectile-command-map)))
-
-;;; Smart M-x enhancement, e.g. sorting items in M-x minibuffer by usage
-(use-package smex
-  :straight t)
-
-;;; Switch window
-(use-package switch-window
-  :straight t)
-
-;;; Execute path from shell
-(use-package exec-path-from-shell
-  :straight t
-  :config
-  (exec-path-from-shell-initialize))
-
+  (setq projectile-switch-project-action #'projectile-commander)
+  (def-projectile-commander-method ?s
+                                   "Open a *eshell* buffer for the project."
+                                   (projectile-run-eshell))
+  (def-projectile-commander-method ?c
+                                   "Run `compile' in the project."
+                                   (projectile-compile-project nil))
+  (def-projectile-commander-method ?d
+                                   "Open project root in dired."
+                                   (projectile-dired))
+  (def-projectile-commander-method ?s
+                                   "Git fetch."
+                                   (magit-status)
+                                   (call-interactively #'magit-fetch-current))
+  (def-projectile-commander-method ?f
+                                   "Find file"
+                                   (counsel-projectile-find-file)))
 ;;; Undo visualization
 (use-package undo-tree
   :disabled
   :straight t
   :diminish undo-tree-mode)
 
-;;; Smart hungry delete
-(use-package smart-hungry-delete
-  :straight t
-  :bind
-  (("C-<backspace>" . smart-hungry-delete-backward-char)
-   ("C-d" . smart-hungry-delete-forward-char))
-  :config
-  (smart-hungry-delete-add-default-hooks))
-
 ;; Highlight parantheses
 (use-package highlight-parentheses
   :straight t
   :hook ((prog-mode . highlight-parentheses-mode)
          (prog-mode . show-paren-mode)))
-
-;; Treemacs
-(use-package treemacs
-  :straight t
-  :config
-  (setq treemacs-position 'left)
-  (setq treemacs-width 42)
-  (setq treemacs-indentation 2)
-  (setq treemacs-space-between-root-nodes nil)
-  (treemacs-resize-icons 13)
-  (treemacs-fringe-indicator-mode 'always)
-  (treemacs-filewatch-mode t)
-  (treemacs-git-mode 'deferred)
-  :hook
-  (treemacs-mode . (lambda ()
-                     (display-line-numbers-mode -1)
-                     (custom-set-faces
-                      '(treemacs-root-face
-                        ((t (:inherit treemacs-root-face
-                             :family "Iosevka Term SS08 Thin"
-                             :height 115))))))))
-
-(use-package treemacs-evil
-  :after treemacs evil
-  :straight t)
-
-(use-package treemacs-projectile
-  :after treemacs projectile
-  :straight t)
-
-(use-package treemacs-icons-dired
-  :after treemacs dired
-  :straight t
-  :config (treemacs-icons-dired-mode))
-
-(use-package treemacs-magit
-  :after treemacs magit
-  :straight t)
 
 ;; dashboard
 (use-package dashboard

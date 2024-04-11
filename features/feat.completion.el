@@ -61,8 +61,8 @@
   :commands (lsp lsp-deferred)
   :straight t
   :config
-  (setq lsp-session-file "~/nix-dotfiles/modules/emacs/lsp/session"
-        lsp-server-install-dir "~/nix-dotfiles/modules/emacs/lsp/server/")
+  (setq lsp-session-file "~/emacs/lsp/session"
+        lsp-server-install-dir "~/emacs/lsp/server/")
   (setq lsp-keep-workspace-alive nil)
   (setq lsp-lens-debounce-interval 0.005)
   ;; Disable slow features

@@ -29,7 +29,7 @@
     "s"        'magit-status
     "l"        'insert-lambda-arrow
     "z"        'insert-arrow
-    "p"        'counsel-projectile-switch-project
+    "p"        'projectile-switch-project
     "f"        'counsel-projectile-find-file
     "g"        'counsel-ag
     "d"        'counsel-dired
