@@ -81,17 +81,21 @@
    ("C-c o" . avy-goto-char-timer)
    ("C-c e" . swiper-avy)))
 
+(use-package counsel-projectile
+  :straight t
+  :after (counsel projectile)
+  :bind
+  (("s-p" . counsel-projectile)
+   ("s-f" . counsel-projectile-find-file)
+   ("s-b" . counsel-projectile-switch-to-buffer))
+  )
+
 ;;; Project management
 (use-package projectile
   :straight t
   :diminish projectile-mode
   :config
   (projectile-mode t)
-  (require 'projectile)
-  (use-package counsel-projectile
-    :bind (("s-p" . counsel-projectile)
-           ("s-f" . counsel-projectile-find-file)
-           ("s-b" . counsel-projectile-switch-to-buffer)))
   (setq projectile-use-git-grep t)
   (setq projectile-completion-system 'ivy)
   (add-to-list 'projectile-globally-ignored-directories "node_modules")

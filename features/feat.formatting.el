@@ -6,23 +6,28 @@
 ;;(use-package format-all
 ;;  :straight t)
 ;;
-;;(use-package prettier-js
+
+(defun maybe-use-prettier ()
+  "Enable prettier-js-mode if an rc file is located."
+  (if (locate-dominating-file default-directory ".prettierrc")
+      (prettier-js-mode +1)))
+
+(use-package prettier-js
+  :straight t
+  :hook
+  ((solidity-mode . maybe-use-prettier)
+   (js2-mode  . maybe-use-prettier)
+   (typescript-mode . maybe-use-prettier)
+   (before-save . prettier-js)
+   ))
+
+;;(use-package hungry-delete
 ;;  :straight t
-;;  :config
-;;  (setq prettier-js-args '("--trailing-comma" "all"
-;;                           "--bracket-spacing" "false"
-;;                           "--single-quote" "false"
-;;                           "--print-width" "80"
-;;                           ))
-;;  :hook
-;;  ((solidity-mode . prettier-js-mode)
-;;   (js2-mode  . prettier-js-mode)))
-;;(add-hook 'before-save-hook 'prettier-js)
-(remove-hook 'before-save-hook 'prettier-js)
-(setq before-save-hook nil)
-
-
-
-
+;;  :hook (prog-mode . hungry-delete-mode))
+;;
+;;(use-package simple
+;;  :straight t
+;;  :hook (before-save . delete-trailing-whitespace))
+;;
 (provide 'feat.formatting)
 ;;; feat.formatting.el ends here
