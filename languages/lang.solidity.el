@@ -9,9 +9,7 @@
 (use-package solidity-mode
   :straight t
   :mode (("\\.sol\\'" . solidity-mode))
-  :bind-keymap
-  ("C-c C-g" . solidity-mode-map)
-  :config
+    :config
   (setq solidity-comment-style 'slash)
   (require 'solidity-flycheck)
   (setq solidity-flycheck-solc-checker-active t

@@ -43,17 +43,6 @@
           ((equal 'visual state) (propertize " V "
                                              'face 'evil-visual-state-face)))))
 
-;;(use-package sky-color-clock
-;;  :straight (sky-color-clock
-;;             :type git
-;;             :host github
-;;             :repo "zk-phi/sky-color-clock")
-;;  :config
-;; ;; (eval-when-compile
-;; ;;   (when calendar-latitude
-;; ;;     (sky-color-clock-initialize (round calendar-latitude))))
-;;  (setq sky-color-clock-enable-emoji-icon nil))
-
 (use-package mood-line
   :straight (mood-line
              :type git
@@ -70,7 +59,6 @@
               (format-mode-line
                '(""
                  (:eval (evil-state-char))
-                 (:eval (sky-color-clock))
                  " "
                  (:eval (mood-line-segment-modified))
                  (:eval (mood-line-segment-buffer-name))
@@ -83,8 +71,8 @@
                  (:eval (mood-line-segment-encoding))
                  (:eval (mood-line-segment-vc))
                  (:eval (mood-line-segment-major-mode))
-                 ;;(:eval (mood-line-segment-flycheck))
-                 ;;(:eval (mood-line-segment-flymake))
+                 (:eval (mood-line-segment-flycheck))
+                 (:eval (mood-line-segment-flymake))
                  (:eval (mood-line-segment-process))
                  " ")))))))
   (customize-mood-line))
