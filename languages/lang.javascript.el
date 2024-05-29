@@ -23,5 +23,11 @@ src: http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-
       (setq-local flycheck-javascript-eslint-executable
                   "~/.nvm/versions/node/v20.2.0/bin/eslint"))))
 
+(use-package js2-mode
+  :straight t
+  :mode "\\.js\\'"
+  :config
+  (setq js2-basic-offset 2))
+
 (provide 'lang.javascript)
 ;;; lang.javascript.el ends here

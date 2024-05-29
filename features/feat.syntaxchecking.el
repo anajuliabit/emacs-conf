@@ -51,7 +51,7 @@
       :fringe-face 'flycheck-fringe-info))
   :hook
   ((rjsx-mode       . flycheck-mode)
-   (c++-mode        . flycheck-mode)
+   ()
    (emacs-lisp-mode . flycheck-mode)))
 
 (use-package flycheck-pos-tip

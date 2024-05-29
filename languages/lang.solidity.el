@@ -1,8 +1,6 @@
-;;; lang.nix.el --- Nix language setup -*- lexical-binding: t -*-
+;;; lang.solidity.el --- Solidity language setup -*- lexical-binding: t -*-
 
 ;;; Commentary:
-
-;; commentary
 
 ;;; Code:
 

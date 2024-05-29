@@ -9,6 +9,7 @@
   :config
   (setq project-switch-commands t)
   (setq magit-diff-paint-whitespace t)
+  (setq magit-show-long-lines-warning nil)
   (setq magit-completion-read-function 'ivy-completion-read))
 
 (use-package project

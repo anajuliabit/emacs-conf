@@ -181,5 +181,7 @@
 
 (add-hook 'eshell-load-hook #'eat-eshell-mode)
 
+(setq long-line-threshold nil)
+
 (provide 'feat.editor)
 ;;; feat.editor.el ends here
