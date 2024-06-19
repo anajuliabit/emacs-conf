@@ -122,7 +122,8 @@
 (use-package undo-tree
   :disabled
   :straight t
-  :diminish undo-tree-mode)
+  ;;:diminish undo-tree-mode)
+ )
 
 ;; Highlight parantheses
 (use-package highlight-parentheses
@@ -161,12 +162,6 @@
 ;; log files
 (use-package logview
   :straight t)
-
-;; editorconfig
-(use-package editorconfig
-  :straight t
-  :config
-  (editorconfig-mode 1))
 
 (use-package eat
   :straight t

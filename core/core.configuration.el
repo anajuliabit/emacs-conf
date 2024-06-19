@@ -63,16 +63,8 @@
 (setq-default tab-width 4)           ;; Set width of a tab to 4 spaces
 (setq-default standard-indent 4)     ;; Default indent by 4 spaces
 
-;; Set default-tab-width for modes that use it
-(setq default-tab-width 4)
-
-;; Set js indent level
-(setq js-indent-level 2)
-
-
 ;; yes-or-no shortcut for dialogues
 (defalias 'yes-or-no-p 'y-or-n-p)
-
 
 ;;; -------------------------------------------------------------------------------------------
 ;;; SERVER + DAEMON
@@ -119,8 +111,8 @@
 ;; Enable winner mode for window history
 (winner-mode t)
 
-;; When delete-selection-mode is active, typed or pasetd text
-;; will delete a selcted text region
+;; When delete-selection-mode is active, typed or pasted text
+;; will delete a selected text region
 (delete-selection-mode t)
 
 ;; Disable .# files
@@ -139,17 +131,17 @@
 (set-language-environment "utf-8")
 (set-default-coding-systems 'utf-8)
 
-;;; Hotfix input of vertical line
-;;(define-key key-translation-map (kbd "C-{") (kbd "|"))
-
 ;; Fullscreen by default
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
-
 (setq eshell-path-env (getenv "PATH"))
+
+;; Background transparency
+(set-frame-parameter (selected-frame) 'alpha '(85 . 85))
+(add-to-list 'default-frame-alist '(alpha . (85 . 85)))
 
 (provide 'core.configuration)
 ;;; core.configuration.el ends here
