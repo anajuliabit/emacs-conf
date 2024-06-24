@@ -8,7 +8,7 @@
 ;;; COMPANY
 ;;; -------------------------------------------------------------------------------------------
 (use-package company
-	:straight t
+  :straight t
   :diminish company-mode
   :preface
   (defun company-mode/backend-with-yas (backend)
@@ -23,7 +23,6 @@
                 company-idle-delay 0.1
                 company-minimum-prefix-length 1
                 company-require-match nil
-                company-dabbrev-downcase nil
                 company-dabbrev-ignore-case nil
                 company-tooltip-align-annotations t
                 company-tooltip-limit 60
@@ -51,8 +50,7 @@
   (setq pos-tip-background-color "#121212")
   (setq pos-tip-foreground-color "#f3f3f3")
   (company-quickhelp-mode)
-  :bind
-  (("C-h" . company-quickhelp-manual-begin)))
+  )
 
 ;;; -------------------------------------------------------------------------------------------
 ;;; LSP: LANGUAGE SERVER PROTOCOL
@@ -72,6 +70,7 @@
   (setq lsp-lens-enable t)
   ;; Reduce unexpected code modifications
   (setq lsp-enable-on-type-formatting nil)
+  (setq lsp-disabled-clients '(semgrep-ls))
   :hook ((nix-mode . lsp)
 	 (rustic-mode . lsp)
 	 (solidity-mode . lsp)
