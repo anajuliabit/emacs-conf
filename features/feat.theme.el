@@ -10,12 +10,17 @@
 )
 
 ;; Font settings
-(use-package alfontzo
-  :straight (alfontzo :type git
-		                  :host github
-		                  :repo "guidoschmidt/alfontzo")
-  :config
-  (alfontzo-init))
+;; Set default font
+(add-to-list 'default-frame-alist '(font . "Iosevka Slab"))
+;; (add-to-list 'default-frame-alist '(font . "RobotoMono NF"))
+
+(display-battery-mode 1)
+
+(set-face-attribute 'default nil
+            :family "Iosevka"
+            :height 180
+            :weight 'normal
+            :width 'normal)
 
 ;; Rainbow delimiters, color highlight parenthesis
 (use-package rainbow-delimiters
