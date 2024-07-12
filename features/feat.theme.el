@@ -10,17 +10,15 @@
 )
 
 ;; Font settings
-;; Set default font
-(add-to-list 'default-frame-alist '(font . "Iosevka Slab"))
-;; (add-to-list 'default-frame-alist '(font . "RobotoMono NF"))
-
-(display-battery-mode 1)
-
-(set-face-attribute 'default nil
-            :family "Iosevka"
-            :height 180
-            :weight 'normal
-            :width 'normal)
+(use-package alfontzo
+  :straight (alfontzo :type git
+		                  :host github
+		                  :repo "guidoschmidt/alfontzo")
+  :config
+  ;; Set the default font-sizes per operating system type
+  (setq alfontzo-os-font-size-map
+        `((,alfontzo-os-mac . 22)))
+  (alfontzo-init))
 
 ;; Rainbow delimiters, color highlight parenthesis
 (use-package rainbow-delimiters
@@ -72,3 +70,4 @@
 
 (provide 'feat.theme)
 ;;; feat.theme.el ends here
+ 

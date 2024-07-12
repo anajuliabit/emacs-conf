@@ -5,15 +5,14 @@
 ;;; Org mode configuration and setup
 
 ;;; Code:
-
-;;(defun my/org-mode-setup ()
-;;  (org-bullets-mode 1)
-;;  (org-indent-mode)
-;;  (variable-pitch-mode 1)
-;;  (auto-fill-mode 0)
-;;  (visual-line-mode 1)
-;;  (setq evil-auto-indent nil)
-;;  (diminish org-indent-mode)
+(defun my/org-mode-setup ()
+  (org-bullets-mode 1)
+  (org-indent-mode)
+  (variable-pitch-mode 1)
+  (auto-fill-mode 0)
+  (visual-line-mode 1)
+  (setq evil-auto-indent nil)
+  (diminish org-indent-mode)
 
 ;;; Hide the emphasis markup
 ;;; (e.g. /.../ for italics, *...* for bold, etc.)
@@ -32,11 +31,10 @@
                               ;; Disable Prettify Symbols mode
                               (setq prettify-symbols-alist nil)
                               (prettify-symbols-mode -1)))))
-
 (use-package org-roam
   :straight t
   :init
-  (setq org-roam-directory (file-truename "/Users/anajulia/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/notes/main")
+  (setq org-roam-directory (file-truename "~/.org/notes/main")
         org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag))
         )
   :bind (("C-c n l" . org-roam-buffer-toggle)
@@ -44,7 +42,7 @@
          ("C-c n g" . org-roam-graph)
          ("C-c n i" . org-roam-node-insert)
          ("C-c n c" . org-roam-capture)
-         ("C-c n j" . org-roam-dailies-capture-today))
+         )
   :config
   (setq org-roam-database-connector 'sqlite-builtin)
   (org-roam-db-autosync-mode))

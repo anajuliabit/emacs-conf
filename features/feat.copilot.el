@@ -2,35 +2,24 @@
 ;;; Commentary:
 ;;; Code:
 
-;;(defun my/copilot-tab ()
-;;  (interactive)
-;;  (or (copilot-accept-completion)
-;;      (indent-for-tab-command)))
-;;
-;;(with-eval-after-load 'copilot
-;;  (define-key copilot-mode-map (kbd "<tab>") #'my/copilot-tab))
-
-(with-eval-after-load 'company
-  ;; disable inline previews
-  (delq 'company-preview-if-just-one-frontend company-frontends))
-
 (use-package copilot
   :straight (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
   :ensure t
-  ;; Disable warning when copilot--infer-indentation-offset cannot find indentation offset
-;;  :custom ((copilot-node-executable "/usr/bin/node" "Set node executable.")
-;;           (copilot-indent-warning-suppress t))
-  :hook (prog-mode . copilot-mode)
-  (copilot-mode . (lambda ()
-                    (setq-local copilot--indent-warning-printed-p t)))
-  :config  
-  (setq copilot-max-char 1000000)
-  (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
-  (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
-  ;; custom completion
-;  (with-eval-after-load 'copilot
-;	(define-key copilot-mode-map (kbd "<tab>") #'my/copilot-tab)))
-  )
+  :hook ((prog-mode org-mode) . copilot-mode)
+  :bind (("C-c M-f" . copilot-complete)
+      :map copilot-completion-map
+       ("C-g" . 'copilot-clear-overlay)
+       ("M-p" . 'copilot-previous-completion)
+       ("M-n" . 'copilot-next-completion)
+       ("C-<tab>" . 'copilot-accept-completion)
+       ("M-f" . 'copilot-accept-completion-by-word)
+       ("M-<return>" . 'copilot-accept-completion-by-line)))
+ ;; :config
+ ;; (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+ ;; (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+ ;; (define-key copilot-completion-map (kbd "C-]") 'copilot-next-completion)
+ ;; (define-key copilot-completion-map (kbd "C-[") 'copilot-previous-completion)
+;; (define-key copilot-completion-map (kbd "C-g") 'copilot-clear-overlay)
 
 (provide 'feat.copilot)
-;;; init-copilot.el ends here
+;;; feat.copilot.el ends here
