@@ -94,30 +94,19 @@
 (use-package projectile
   :straight t
   :diminish projectile-mode
+  :bind (("C-c p p" . projectile-switch-project)
+         ("C-c p s s" . projectile-ag)
+         ("C-c p s r" . projectile-ripgrep))
   :config
   (projectile-mode t)
+  (setq projectile-keymap-prefix (kbd "C-c p"))
   (setq projectile-use-git-grep t)
   (setq projectile-completion-system 'ivy)
-  (add-to-list 'projectile-globally-ignored-directories "node_modules")
-  (add-to-list 'projectile-globally-ignored-directories "lib")
-  (add-to-list 'projectile-globally-ignored-directories "out")
-  (setq projectile-switch-project-action #'projectile-commander)
-  (def-projectile-commander-method ?s
-                                   "Open a *eshell* buffer for the project."
-                                   (projectile-run-eshell))
-  (def-projectile-commander-method ?c
-                                   "Run `compile' in the project."
-                                   (projectile-compile-project nil))
-  (def-projectile-commander-method ?d
-                                   "Open project root in dired."
-                                   (projectile-dired))
-  (def-projectile-commander-method ?s
-                                   "Git fetch."
-                                   (magit-status)
-                                   (call-interactively #'magit-fetch-current))
-  (def-projectile-commander-method ?f
-                                   "Find file"
-                                   (counsel-projectile-find-file)))
+  (setq projectile-enable-caching t)
+  (setq projectile-switch-project-action 'projectile-dired)
+)
+
+
 ;;; Undo visualization
 (use-package undo-tree
   :disabled
