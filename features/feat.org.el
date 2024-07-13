@@ -13,6 +13,7 @@
   (visual-line-mode 1)
   (setq evil-auto-indent nil)
   (diminish org-indent-mode)
+ )
 
 ;;; Hide the emphasis markup
 ;;; (e.g. /.../ for italics, *...* for bold, etc.)
