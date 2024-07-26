@@ -10,13 +10,16 @@
             :host github
             :repo "orzechowskid/tsi.el"))
 
-(use-package typescript-mode
-  :straight t
-  :config
-  (setq-default typescript-indent-level 2)
-  (add-hook 'typescript-mode-hook 'emmet/ts-mode-hook)
-  :mode (("\\.ts\\'"  . typescript-mode))
-  )
+(use-package typescript-ts-mode
+  :straight nil
+  :after eglot
+  :init
+  (add-to-list 'eglot-server-programs
+               '(typescript-ts-mode "typescript-language-server" "--stdio"))
+  :hook (typescript-ts-mode . eglot-ensure)
+  :mode (("\\.ts\\'" . typescript-ts-mode)
+         ("\\.tsx\\'" . typescript-ts-mode)))
+
 
 (use-package tide
   :straight t

@@ -55,5 +55,9 @@
           (setq org-roam-ui-browser-function #'xwidget-webkit-browse-url)))
 
 
+(use-package ox-slack
+  :straight t
+)
+
 (provide 'feat.org)
 ;;; feat.org.el ends here

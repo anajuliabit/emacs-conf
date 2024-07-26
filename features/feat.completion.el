@@ -20,7 +20,7 @@
 	:config
   (setq-default company-dabbrev-other-buffers t
                 company-dabbrev-code-time-limit 0.1
-                company-idle-delay 0.1
+                company-idle-delay 0.500
                 company-minimum-prefix-length 1
                 company-require-match nil
                 company-dabbrev-ignore-case nil
@@ -63,23 +63,29 @@
         lsp-server-install-dir "~/emacs/lsp/server/")
   (setq lsp-keep-workspace-alive nil)
   (setq lsp-lens-debounce-interval 0.005)
+  (setq lsp-idle-delay 0.500)
   ;; Disable slow features
   (setq lsp-enable-folding nil
         lsp-enable-text-document-color nil)
+  ;;(setq lsp-prefer-flymake nil) ;; Prefer using lsp-ui and flycheck
+  (setq lsp-log-io nil)
+  (setq lsp-enable-indentation nil)
+  (setq lsp-auto-guess-root t)
   (lsp-enable-which-key-integration t)
   (setq lsp-lens-enable t)
   ;; Reduce unexpected code modifications
-  (setq lsp-enable-on-type-formatting nil)
-  (setq lsp-disabled-clients '(semgrep-ls))
+  ;;(setq lsp-enable-on-type-formatting nil)
+  ;;(setq lsp-disabled-clients '(semgrep-ls))
   :hook ((nix-mode . lsp)
 	 (rustic-mode . lsp)
 	 (solidity-mode . lsp)
 	 (lisp-mode . lsp-deferred)
 	 (js-mode . lsp-deferred)
 	 (js2-mode . lsp-deferred)
-	 (typescript-mode . lsp-deferred))
+	 (typescript-ts-mode . lsp-deferred))
   :commands (lsp lsp-deferred lsp-register-client)
   )
+
 
 (use-package lsp-ui
   :straight t
@@ -93,6 +99,8 @@
         lsp-ui-doc-position 'at-point
         lsp-ui-sideline-show-hover nil))
 
+(add-hook 'lsp-mode-hook 'lsp-ui-mode)
+
 (use-package lsp-ivy
   :straight t)
 
@@ -101,6 +109,10 @@
   :config
   (lsp-treemacs-sync-mode t)
   (setq treemacs-no-png-images t))
+
+;; lsp-doctor recommentations
+(setq gc-cons-threshold 100000000)
+(setq read-process-output-max (* 1024 1024)) ;; 1MB
 
 
 (provide 'feat.completion)
