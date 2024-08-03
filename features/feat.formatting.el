@@ -7,13 +7,22 @@
 ;;  :straight t)
 ;;
 
+;;(use-package reformatter
+;;    :straight t
+;;    :config
+;;    (reformatter-define prettier-js
+;;        :program "prettier"
+;;        :args '("--stdin-filepath" "file")
+;;        :lighter " Prettier"))
+
+
 (defun maybe-use-prettier ()
-  "Enable prettier-js-mode if an rc file is located."
-  (if (locate-dominating-file default-directory ".prettierrc")
-      (prettier-js-mode +1)))
+  "Enable prettier-js-mode if a rc file is located."
+  (when (locate-dominating-file default-directory ".prettierrc")
+    (prettier-js-mode +1)))
 
 (defun run-prettier-before-save ()
-  "Run `prettier-js` if `prettier-js-mode` is enabled."
+  "Run prettier-js if prettier-js-mode is enabled."
   (when prettier-js-mode
     (prettier-js)))
 
@@ -21,7 +30,7 @@
   :straight t
   :hook ((solidity-mode . maybe-use-prettier)
          (js2-mode . maybe-use-prettier)
-         (typescript-mode . maybe-use-prettier))
+         (typescript-ts-mode . maybe-use-prettier))
   :init
   (add-hook 'before-save-hook 'run-prettier-before-save))
 
