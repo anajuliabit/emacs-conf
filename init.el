@@ -2,6 +2,16 @@
 
 ;;; Commentary:
 ;;; Code:
+
+;; Native compilation stuff
+(setq comp-speed 2)
+(setq package-native-compile t)
+(setq native-comp-async-report-warnings-errors nil)
+(setq native-comp-deferred-compilation-deny-list nil)
+
+;; Disable package.el as we are using straight
+(setq package-enable-at-startup nil)
+
 (defvar config-path (expand-file-name "~/emacs")
   "Path to nix-dotfiles.")
 (load (expand-file-name "core/core.configuration.el" config-path))
