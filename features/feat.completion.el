@@ -85,21 +85,29 @@
 	 (typescript-ts-mode . lsp-deferred))
   :commands (lsp lsp-deferred lsp-register-client)
   )
+;;
+;;
+;;(use-package lsp-ui
+;;  :straight t
+;;  :commands lsp-ui-mode
+;;  :config
+;;  (setq lsp-ui-doc-max-height 8
+;;        lsp-ui-doc-max-width 35
+;;        lsp-ui-sideline-ignore-duplicate t
+;;        lsp-ui-doc-enable nil
+;;        lsp-ui-doc-show-with-mouse nil
+;;        lsp-ui-doc-position 'at-point
+;;        lsp-ui-sideline-show-hover nil))
 
+;;(use-package lsp-bridge
+;;  :straight '(lsp-bridge
+;;	      :type git
+;;	      :host github
+;;	      :repo "manateelazycat/lsp-bridge"
+;;	      :files (:defaults "*"))
+;;)
 
-(use-package lsp-ui
-  :straight t
-  :commands lsp-ui-mode
-  :config
-  (setq lsp-ui-doc-max-height 8
-        lsp-ui-doc-max-width 35
-        lsp-ui-sideline-ignore-duplicate t
-        lsp-ui-doc-enable nil
-        lsp-ui-doc-show-with-mouse nil
-        lsp-ui-doc-position 'at-point
-        lsp-ui-sideline-show-hover nil))
-
-(add-hook 'lsp-mode-hook 'lsp-ui-mode)
+;;(add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
 (use-package lsp-ivy
   :straight t)
@@ -114,6 +122,11 @@
 (setq gc-cons-threshold 100000000)
 (setq read-process-output-max (* 1024 1024)) ;; 1MB
 
+(use-package yasnippet
+  :straight t
+  :diminish yas-minor-mode
+  :config
+  (yas-global-mode 1))
 
 (provide 'feat.completion)
 ;;; feat.completion.el ends here

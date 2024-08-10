@@ -43,9 +43,6 @@
   (advice-add 'swiper :after #'swiper-recenter)
   (ivy-mode t))
 
-(use-package wgrep-ag
-  :straight t)
-
 (use-package ivy-rich
   :straight t
   :config
@@ -53,6 +50,11 @@
 
 (use-package lsp-ivy
   :straight t)
+
+(use-package wgrep-ag
+  :straight t)
+
+
 
 ;;; swiper - isearch replacement
 (use-package swiper

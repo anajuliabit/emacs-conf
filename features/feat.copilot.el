@@ -1,4 +1,4 @@
-;;; init-copilot.el --- AI code helper buddy guy. -*- lexical-binding: t -*-
+;;; init-copilot.el --- Copilot -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -8,18 +8,15 @@
   :hook ((prog-mode org-mode) . copilot-mode)
   :bind (("C-c M-f" . copilot-complete)
       :map copilot-completion-map
-       ("C-g" . 'copilot-clear-overlay)
-       ("M-p" . 'copilot-previous-completion)
-       ("M-n" . 'copilot-next-completion)
-       ("C-<tab>" . 'copilot-accept-completion)
-       ("M-f" . 'copilot-accept-completion-by-word)
-       ("M-<return>" . 'copilot-accept-completion-by-line)))
- ;; :config
- ;; (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
- ;; (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
- ;; (define-key copilot-completion-map (kbd "C-]") 'copilot-next-completion)
- ;; (define-key copilot-completion-map (kbd "C-[") 'copilot-previous-completion)
-;; (define-key copilot-completion-map (kbd "C-g") 'copilot-clear-overlay)
+              ("<tab>" . 'copilot-accept-completion)
+              ("TAB" . 'copilot-accept-completion)
+              ("C-TAB" . 'copilot-accept-completion-by-word)
+              ("C-<tab>" . 'copilot-accept-completion-by-word)
+              ("C-n" . 'copilot-next-completion)
+              ("C-p" . 'copilot-previous-completion))
+ :config
+  (add-to-list 'copilot-indentation-alist `(prog-mode 4))
+  (add-to-list 'copilot-indentation-alist `(emacs-lisp-mode 4)))
 
 (provide 'feat.copilot)
 ;;; feat.copilot.el ends here

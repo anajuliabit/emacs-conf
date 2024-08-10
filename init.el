@@ -28,6 +28,7 @@
 (load (expand-file-name "features/feat.modeline.el" config-path))
 (load (expand-file-name "features/feat.formatting.el" config-path))
 (load (expand-file-name "features/feat.theme.el" config-path))
+(load (expand-file-name "features/feat.shell.el" config-path))
 (load (expand-file-name "languages/lang.typescript.el" config-path))
 (load (expand-file-name "languages/lang.nix.el" config-path))
 (load (expand-file-name "languages/lang.solidity.el" config-path))
