@@ -43,9 +43,7 @@
     "?"        'flyspell-correct-at-point
     "!"        'flyspell-add-word-to-dict
     "m"        'hydra/multiple-cursors/body
-    "0"        'switch-window
     "1"        'hydra/window-management/body
-    "9"        'hydra/character-input/body
     "c"        'hydra/string-inflection/body
     "<C-up>"   'move-line-up
     "<C-down>" 'move-line-down
