@@ -44,7 +44,6 @@
     "!"        'flyspell-add-word-to-dict
     "m"        'hydra/multiple-cursors/body
     "1"        'hydra/window-management/body
-    "c"        'hydra/string-inflection/body
     "<C-up>"   'move-line-up
     "<C-down>" 'move-line-down
 
@@ -90,29 +89,6 @@
   :after evil
   :config
   (evil-lion-mode))
-
-(use-package evil-lispy
-  :straight t
-  :after evil
-  :config
-  (defalias 'lispy-asterisk
-    (lispy-pair "*" "*" 'lispy-parens-preceding-syntax-alist)
-    "`lispy-pair' using *")
-  (defalias 'lispy-singlequote
-    (lispy-pair "'" "'" 'lispy-parens-preceding-syntax-alist)
-    "`lispy-pair' using '")
-  (defalias 'lispy-slash
-    (lispy-pair "/" "/" 'lispy-parens-preceding-syntax-alist)
-    "`lispy-pair' using /")
-  (defalias 'lispy-tilde
-    (lispy-pair "~" "~" 'lispy-parens-preceding-syntax-alist)
-    "`lispy-pair' using ~.")
-  (defalias 'lispy-angle-brackets
-    (lispy-pair "<" ">" 'lispy-parens-preceding-syntax-alist)
-    "`lispy-pair' using <>")
-  (defalias 'lispy-backticks
-    (lispy-pair "`" "`" 'lispy-parens-preceding-syntax-alist)
-    "`lispy-pair' using `"))
 
 (use-package evil-mc
   :straight t

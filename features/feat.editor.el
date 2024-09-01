@@ -144,12 +144,6 @@
   :config
   (require 'vlf-setup))
 
-;; string inflection
-(use-package string-inflection
-  :straight t
-  :config
-  (require 'string-inflection))
-
 ;; log files
 (use-package logview
   :straight t)
@@ -158,16 +152,62 @@
   :straight t
  )
 
+
+(add-hook 'eshell-load-hook #'eat-eshell-mode)
+
 (use-package exec-path-from-shell
   :straight t
   :init
   (exec-path-from-shell-initialize))
 
-(exec-path-from-shell-initialize)
-
-(add-hook 'eshell-load-hook #'eat-eshell-mode)
-
 (setq long-line-threshold nil)
+
+(use-package which-key
+  :diminish which-key-mode
+  :config
+  (which-key-mode)
+  (setq which-key-idle-delay 0.3))
+
+;; completions
+(use-package vertico
+  :bind (:map vertico-map
+         ("C-j" . vertico-next)
+         ("C-k" . vertico-previous)
+         ("C-f" . vertico-exit)
+         :map minibuffer-local-map)
+  :custom
+  (vertico-cycle t)
+  :custom-face
+  (vertico-current ((t (:background "#3a3f5a"))))
+  :config
+  (vertico-mode))
+
+;; completions annotations
+(use-package marginalia
+  :after vertico
+  :custom
+  (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
+  :init
+  (marginalia-mode 1))
+
+(use-package helpful
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable)
+  :bind
+  ([remap describe-function] . helpful-function)
+  ([remap describe-symbol] . helpful-symbol)
+  ([remap describe-variable] . helpful-variable)
+  ([remap describe-command] . helpful-command)
+  ([remap describe-key] . helpful-key))
+
+(use-package treesit-auto
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
+
 
 (provide 'feat.editor)
 ;;; feat.editor.el ends here

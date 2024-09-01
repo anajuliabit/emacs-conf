@@ -5,23 +5,51 @@
 ;;; Org mode configuration and setup
 
 ;;; Code:
-
-
 (use-package org
   :ensure nil
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
-         ("C-c c" . org-capture)
+         ("C-c c" . org-capture))
+  ;;:hook (org-mode . my/org-mode-setup)
   :config
-         (when (file-directory-p "~/org/agenda/")
-           (setq org-agenda-files (list "~/org/agenda/")))
-           (setq org-default-notes-file "~/org/notes/inbox.org")
-           ;;; calls my/org-mode-setup when org-mode is enabled
-           (add-hook 'org-mode 'my/org-mode-setup)
-  :map org-mode-map (("C-c C-p" . eaf-org-export-to-pdf-and-open)
-                      ("C-c ;" . nil)))
+  (when (file-directory-p "~/org/agenda/")
+    (setq org-agenda-files (list "~/org/agenda/")))
+  (setq org-default-notes-file "~/org/notes/inbox.org")
+  ;; Define the custum capture templates
+  (setq org-capture-templates
+        '(("t" "Todo" entry (file org-default-notes-file)
+	       "* TODO %?\n%u\n%a\n" :clock-in t :clock-resume t)
+	      ("m" "Meeting" entry (file org-default-notes-file)
+	       "* MEETING with %? :MEETING:\n%t" :clock-in t :clock-resume t)
+	      ("j" "Journal" entry (file+datetree "~/org/notes/journal.org")
+	       "* %?\n%U\n" :clock-in t :clock-resume t)
+	      ("i" "Idea" entry (file org-default-notes-file)
+	       "* %? :IDEA: \n%t" :clock-in t :clock-resume t)
+	      ("n" "Next Task" entry (file+headline org-default-notes-file "Tasks")
+	       "** NEXT %? \nDEADLINE: %t") ))
+   ;;; Hide the emphasis markup
+   ;;; (e.g. /.../ for italics, *...* for bold, etc.)
+  (setq org-hide-emphasis-markers t)
+   ;;; TODO keywords
+  (setq org-todo-keywords (quote ((sequence "TODO(t)" "IN PROGRESS" "NEXT(s)" "|" "DONE(d!/!)")
+                                  (sequence "WAITING(w@/!)" "SOMEDAY(S)" "MEETING(P@)" "|" "CANCELLED(c@/!)")))
+        )
+  ;; Set default column view headings: Task Total-Time Time-Stamp
+  (setq org-columns-default-format "%50ITEM(Task) %10CLOCKSUM %16TIMESTAMP_IA")
+  (setq org-agenda-tags-column org-tags-column)
+  (setq org-agenda-sticky t)
+  (setq org-agenda-inhibit-startup nil)
+  (setq org-agenda-dim-blocked-tasks nil)
+  ;; Compact the block agenda view (disabled)
+  (setq org-agenda-compact-blocks nil)
+  ;; Set the times to display in the time grid
+  (setq org-agenda-time-grid
+        (quote
+         ((daily today remove-match)
+          (800 1200 1600 2000)
+          "......" "----------------")))
 
-)
+  )
 
 (defun my/org-mode-setup ()
  (org-bullets-mode 1)
@@ -68,45 +96,6 @@
 (use-package ox-slack
   :straight t
 )
-
-
-;;; Hide the emphasis markup
-;;; (e.g. /.../ for italics, *...* for bold, etc.)
-(setq org-hide-emphasis-markers t)
-
-;;; TODO keywords
-(setq org-todo-keywords (quote ((sequence "TODO(t)" "IN PROGRESS" "NEXT(s)" "|" "DONE(d!/!)")
-                                (sequence "WAITING(w@/!)" "SOMEDAY(S)" "MEETING(P@)" "|" "CANCELLED(c@/!)")))
-)
-;; Define the custum capture templates
-(setq org-capture-templates
-       '(("t" "Todo" entry (file org-default-notes-file)
-	  "* TODO %?\n%u\n%a\n" :clock-in t :clock-resume t)
-	 ("m" "Meeting" entry (file org-default-notes-file)
-	  "* MEETING with %? :MEETING:\n%t" :clock-in t :clock-resume t)
-	 ("j" "Journal" entry (file+datetree "~/org/notes/journal.org")
-	  "* %?\n%U\n" :clock-in t :clock-resume t)
-	 ("i" "Idea" entry (file org-default-notes-file)
-	  "* %? :IDEA: \n%t" :clock-in t :clock-resume t)
-	 ("n" "Next Task" entry (file+headline org-default-notes-file "Tasks")
-	  "** NEXT %? \nDEADLINE: %t") ))
-
-;; Set default column view headings: Task Total-Time Time-Stamp
-(setq org-columns-default-format "%50ITEM(Task) %10CLOCKSUM %16TIMESTAMP_IA")
-(setq org-agenda-tags-column org-tags-column)
-(setq org-agenda-sticky t)
-(setq org-agenda-inhibit-startup nil)
-(setq org-agenda-dim-blocked-tasks nil)
-
-;; Compact the block agenda view (disabled)
-(setq org-agenda-compact-blocks nil)
-
-;; Set the times to display in the time grid
-(setq org-agenda-time-grid
-      (quote
-       ((daily today remove-match)
-        (800 1200 1600 2000)
-        "......" "----------------")))
 
 
 (provide 'feat.org)
