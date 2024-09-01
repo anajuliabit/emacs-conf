@@ -45,7 +45,6 @@
     "m"        'hydra/multiple-cursors/body
     "0"        'switch-window
     "1"        'hydra/window-management/body
-    "8"        'combobulate
     "9"        'hydra/character-input/body
     "c"        'hydra/string-inflection/body
     "<C-up>"   'move-line-up
@@ -142,23 +141,6 @@
   :after evil
   :config
   (global-evil-surround-mode t))
-
-(use-package evil-textobj-tree-sitter
-  :straight (evil-textobj-tree-sitter
-             :type git
-             :host github
-             :repo "meain/evil-textobj-tree-sitter"
-             :files (:defaults "queries"))
-  :after evil
-  :config
-  (define-key evil-outer-text-objects-map "f" (evil-textobj-tree-sitter-get-textobj "function.outer"))
-  (define-key evil-inner-text-objects-map "f" (evil-textobj-tree-sitter-get-textobj "function.inner"))
-  (define-key evil-outer-text-objects-map "c" (evil-textobj-tree-sitter-get-textobj "conditional.outer"))
-  (define-key evil-inner-text-objects-map "c" (evil-textobj-tree-sitter-get-textobj "conditional.inner"))
-  (define-key evil-outer-text-objects-map "b" (evil-textobj-tree-sitter-get-textobj "block.outer"))
-  (define-key evil-inner-text-objects-map "b" (evil-textobj-tree-sitter-get-textobj "block.inner"))
-  (define-key evil-inner-text-objects-map "s" (evil-textobj-tree-sitter-get-textobj "scopename.inner"))
-  (define-key evil-inner-text-objects-map "p" (evil-textobj-tree-sitter-get-textobj "parameter.inner")))
 
 (use-package tree-sitter
   :straight t)

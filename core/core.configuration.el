@@ -91,8 +91,7 @@
 
 ;; Enable line numbers
 (global-display-line-numbers-mode nil)
-(dolist (mode '(org-mode-hook
-                term-mode-hook
+(dolist (mode '(term-mode-hook
                 vterm-mode-hook
                 eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
@@ -142,8 +141,8 @@
 (add-to-list 'load-path (expand-file-name "~/elisp"))
 
 ;; Background transparency
-(set-frame-parameter (selected-frame) 'alpha '(85 . 85))
-(add-to-list 'default-frame-alist '(alpha . (85 . 85)))
+;;(set-frame-parameter (selected-frame) 'alpha '(85 . 85))
+;;(add-to-list 'default-frame-alist '(alpha . (85 . 85)))
 
 (provide 'core.configuration)
 ;;; core.configuration.el ends here
