@@ -105,6 +105,8 @@
 	      :host github
 	      :repo "manateelazycat/lsp-bridge"
 	      :files (:defaults "*"))
+  :hook
+  (prog-mode . lsp-bridge-mode)
 )
 
 ;;(add-hook 'lsp-mode-hook 'lsp-ui-mode)
@@ -124,9 +126,11 @@
 
 (use-package yasnippet
   :straight t
+  :demand t
   :diminish yas-minor-mode
   :config
   (yas-global-mode 1))
 
 (provide 'feat.completion)
 ;;; feat.completion.el ends here
+
