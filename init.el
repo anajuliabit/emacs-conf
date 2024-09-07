@@ -34,6 +34,7 @@
 (load (expand-file-name "languages/lang.solidity.el" config-path))
 (load (expand-file-name "languages/lang.javascript.el" config-path))
 (load (expand-file-name "languages/lang.markdown.el" config-path))
+(load (expand-file-name "languages/lang.elisp.el" config-path))
 
 (provide 'init.el)
 ;;; init.el ends here
