@@ -12,7 +12,18 @@
   :straight (major-mode-hydra :type git
 		                          :host github
 		                          :repo "jerrypnz/major-mode-hydra.el")
-  :bind ("C-SPC" . major-mode-hydra))
+  :demand t
+  :bind ("C-SPC" . major-mode-hydra)
+  :config
+  (setq major-mode-hydra-title-generator
+        '(lambda (mode)
+           (s-concat "\n"
+			(s-repeat 1 " ")
+			(all-the-icons-icon-for-mode mode :v-adjust -0.15)
+			" "
+			(symbol-name mode)
+			" commands")))
+)
 
 ;;; Hydras
 (pretty-hydra-define hydra/window-management
