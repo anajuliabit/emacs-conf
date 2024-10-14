@@ -21,14 +21,11 @@
     "a"        'align-regexp
     "o"        'sort-lines
     "b"        'ivy-switch-buffer
-    "x"        'frog-jump-buffer
     "i"        'ibuffer
     "u"        'hydra/lsp-ui/body
     "n"        'ivy-switch-buffer-other-window
     "k"        'ido-kill-buffer
     "s"        'magit-status
-    "l"        'insert-lambda-arrow
-    "z"        'insert-arrow
     "p"        'projectile-switch-project
     "f"        'counsel-projectile-find-file
     "g"        'counsel-ag
@@ -83,12 +80,6 @@
   (setq-default evil-collection-company-use-tng nil)
   (evil-collection-init))
 
-;; provides gl and gL align operators
-(use-package evil-lion
-  :straight t
-  :after evil
-  :config
-  (evil-lion-mode))
 
 (use-package evil-mc
   :straight t
@@ -96,16 +87,6 @@
   :config
   (setq evil-mc-one-cursor-show-mode-line-text t)
   (global-evil-mc-mode t))
-
-(use-package evil-paredit
-  :straight t
-  :after evil)
-
-(use-package origami
-  :straight t
-  :after evil
-  :config
-  (global-origami-mode))
 
 ;; Evil surround allows quick text object changes
 ;; e.g. c-s ( { to swap the parantheses a region is

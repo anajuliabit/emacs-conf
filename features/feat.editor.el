@@ -15,11 +15,9 @@
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory))
 
-;;; Diminish
 (use-package diminish
   :straight t)
 
-;;; counsel
 (use-package counsel
   :straight t
   :bind
@@ -108,7 +106,6 @@
   (setq projectile-switch-project-action 'projectile-dired)
 )
 
-
 ;;; Undo visualization
 (use-package undo-tree
   :disabled
@@ -152,7 +149,6 @@
   :straight t
  )
 
-
 (add-hook 'eshell-load-hook #'eat-eshell-mode)
 
 (use-package exec-path-from-shell
@@ -162,11 +158,16 @@
 
 (setq long-line-threshold nil)
 
-(use-package which-key
-  :diminish which-key-mode
-  :config
-  (which-key-mode)
-  (setq which-key-idle-delay 0.3))
+;;(use-package which-key
+;;  :diminish which-key-mode
+;;  :config
+;;  (which-key-mode)
+;;  (setq which-key-idle-delay 0.3))
+
+(use-package iedit
+  :straight t
+  :bind
+  ("C-;" . iedit-mode))
 
 ;; completions
 (use-package vertico
@@ -207,7 +208,6 @@
   :config
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
-
 
 (provide 'feat.editor)
 ;;; feat.editor.el ends here

@@ -123,9 +123,6 @@
 ;; Column indicator at 80 characters
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
-;;; -------------------------------------------------------------------------------------------
-;;; i18n Settings
-;;; -------------------------------------------------------------------------------------------
 ;; Setup UTF8
 (set-language-environment "utf-8")
 (set-default-coding-systems 'utf-8)
@@ -140,10 +137,11 @@
 
 (add-to-list 'load-path (expand-file-name "~/elisp"))
 
+(setq package-install-upgrade-built-in t)
+
 ;; Background transparency
 ;;(set-frame-parameter (selected-frame) 'alpha '(85 . 85))
 ;;(add-to-list 'default-frame-alist '(alpha . (85 . 85)))
-
 
 (provide 'core.configuration)
 ;;; core.configuration.el ends here

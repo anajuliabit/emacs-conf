@@ -52,62 +52,62 @@
   (company-quickhelp-mode)
   )
 
-;;; -------------------------------------------------------------------------------------------
-;;; LSP: LANGUAGE SERVER PROTOCOL
-;;; -------------------------------------------------------------------------------------------
-;;(use-package lsp-mode
-;;  :commands (lsp lsp-deferred)
-;;  :straight t
-;;  :config
-;;  (setq lsp-session-file "~/emacs/lsp/session"
-;;        lsp-server-install-dir "~/emacs/lsp/server/")
-;;  (setq lsp-keep-workspace-alive nil)
-;;  (setq lsp-lens-debounce-interval 0.005)
-;;  (setq lsp-idle-delay 0.500)
-;;  ;; Disable slow features
-;;  (setq lsp-enable-folding nil
-;;        lsp-enable-text-document-color nil)
-;;  ;;(setq lsp-prefer-flymake nil) ;; Prefer using lsp-ui and flycheck
-;;  (setq lsp-log-io nil)
-;;  (setq lsp-enable-indentation nil)
-;;  (setq lsp-auto-guess-root t)
-;;  (lsp-enable-which-key-integration t)
-;;  (setq lsp-lens-enable t)
-;;  ;; Reduce unexpected code modifications
-;;  ;;(setq lsp-enable-on-type-formatting nil)
-;;  ;;(setq lsp-disabled-clients '(semgrep-ls))
-;;  :hook ((nix-mode . lsp)
-;;	 (rustic-mode . lsp)
-;;	 (solidity-mode . lsp)
-;;	 (lisp-mode . lsp-deferred)
-;;	 (js-mode . lsp-deferred)
-;;	 (js2-mode . lsp-deferred)
-;;	 (typescript-ts-mode . lsp-deferred))
-;;  :commands (lsp lsp-deferred lsp-register-client)
-;;  )
-;;
-;;
-;;(use-package lsp-ui
-;;  :straight t
-;;  :commands lsp-ui-mode
-;;  :config
-;;  (setq lsp-ui-doc-max-height 8
-;;        lsp-ui-doc-max-width 35
-;;        lsp-ui-sideline-ignore-duplicate t
-;;        lsp-ui-doc-enable nil
-;;        lsp-ui-doc-show-with-mouse nil
-;;        lsp-ui-doc-position 'at-point
-;;        lsp-ui-sideline-show-hover nil))
+; -------------------------------------------------------------------------------------------
+; LSP: LANGUAGE SERVER PROTOCOL
+; -------------------------------------------------------------------------------------------
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :straight t
+  :config
+  (setq lsp-session-file "~/emacs/lsp/session"
+        lsp-server-install-dir "~/emacs/lsp/server/")
+  (setq lsp-keep-workspace-alive nil)
+  (setq lsp-lens-debounce-interval 0.005)
+  (setq lsp-idle-delay 0.500)
+  ;; Disable slow features
+  (setq lsp-enable-folding nil
+        lsp-enable-text-document-color nil)
+  ;;(setq lsp-prefer-flymake nil) ;; Prefer using lsp-ui and flycheck
+  (setq lsp-log-io nil)
+  (setq lsp-enable-indentation nil)
+  (setq lsp-auto-guess-root t)
+  (lsp-enable-which-key-integration t)
+  (setq lsp-lens-enable t)
+  ;; Reduce unexpected code modifications
+  ;;(setq lsp-enable-on-type-formatting nil)
+  ;;(setq lsp-disabled-clients '(semgrep-ls))
+  :hook ((nix-mode . lsp)
+	 (rustic-mode . lsp)
+	 (solidity-mode . lsp)
+	 (lisp-mode . lsp-deferred)
+	 (js-mode . lsp-deferred)
+	 (js2-mode . lsp-deferred)
+	 (typescript-ts-mode . lsp-deferred))
+  :commands (lsp lsp-deferred lsp-register-client)
+  )
 
-(use-package lsp-bridge
-  :straight '(lsp-bridge
-	      :type git
-	      :host github
-	      :repo "manateelazycat/lsp-bridge"
-	      :files (:defaults "*"))
-  :hook
-  (prog-mode . lsp-bridge-mode)
-)
+
+(use-package lsp-ui
+  :straight t
+  :commands lsp-ui-mode
+  :config
+  (setq lsp-ui-doc-max-height 8
+        lsp-ui-doc-max-width 35
+        lsp-ui-sideline-ignore-duplicate t
+        lsp-ui-doc-enable nil
+        lsp-ui-doc-show-with-mouse nil
+        lsp-ui-doc-position 'at-point
+        lsp-ui-sideline-show-hover nil))
+
+;;(use-package lsp-bridge
+;;  :straight '(lsp-bridge
+;;	      :type git
+;;	      :host github
+;;	      :repo "manateelazycat/lsp-bridge"
+;;	      :files (:defaults "*"))
+;;  :hook
+;;  (prog-mode . lsp-bridge-mode)
+;;)
 
 ;;(add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
