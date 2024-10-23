@@ -143,6 +143,13 @@
 ;;(set-frame-parameter (selected-frame) 'alpha '(85 . 85))
 ;;(add-to-list 'default-frame-alist '(alpha . (85 . 85)))
 
+(setq package-archives '(
+    ("org" . "http://orgmode.org/elpa/")
+    ("gnu" . "http://elpa.gnu.org/packages/")
+    ("melpa" . "http://melpa.org/packages/")
+))
+
+
 (provide 'core.configuration)
 ;;; core.configuration.el ends here
 
