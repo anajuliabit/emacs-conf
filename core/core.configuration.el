@@ -6,6 +6,15 @@
 
 ;;; Code:
 
+;; Native compilation stuff
+(setq comp-speed 2)
+(setq package-native-compile t)
+(setq native-comp-async-report-warnings-errors nil)
+(setq native-comp-deferred-compilation-deny-list nil)
+
+;; Disable package.el as we are using straight
+(setq package-enable-at-startup nil)
+
 ;;; -------------------------------------------------------------------------------------------
 ;;; VARIABLE SETTINGS
 ;;; -------------------------------------------------------------------------------------------
@@ -147,8 +156,8 @@
     ("org" . "http://orgmode.org/elpa/")
     ("gnu" . "http://elpa.gnu.org/packages/")
     ("melpa" . "http://melpa.org/packages/")
+    ("melpa-stable" . "https://stable.melpa.org/packages/")
 ))
-
 
 (provide 'core.configuration)
 ;;; core.configuration.el ends here
