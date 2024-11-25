@@ -14,6 +14,9 @@
 (use-package gptel
   :custom
   (gptel-model 'claude-3-5-sonnet-20240620)
+  :bind
+  (("C-a" . gptel-menu)
+ )
   :config
   (defun read-file-contents (file-path)
     "Read the contents of FILE-PATH and return it as a string."
@@ -27,6 +30,24 @@
                    :stream t
                    :key #'gptel-api-key)))
 
+(use-package magit-gptcommit
+  :straight t
+  :demand t
+  :after gptel magit
+
+  :config
+
+  ;; Enable magit-gptcommit-mode to watch staged changes and generate commit message automatically in magit status buffer
+  ;; This mode is optional, you can also use `magit-gptcommit-generate' to generate commit message manually
+  ;; `magit-gptcommit-generate' should only execute on magit status buffer currently
+  ;; (magit-gptcommit-mode 1)
+
+  ;; Add gptcommit transient commands to `magit-commit'
+  ;; Eval (transient-remove-suffix 'magit-commit '(1 -1)) to remove gptcommit transient commands
+  (magit-gptcommit-status-buffer-setup)
+  :bind (:map git-commit-mode-map
+              ("C-c C-g" . magit-gptcommit-commit-accept))
+  )
 
 
 (provide 'feat.llm)

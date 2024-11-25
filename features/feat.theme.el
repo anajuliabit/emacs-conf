@@ -6,7 +6,7 @@
 ;;; Code:
 (use-package doom-themes
   :config
-  (load-theme 'doom-tomorrow-night t)
+  (load-theme 'doom-ayu-dark t)
 )
 
 ;; Font settings

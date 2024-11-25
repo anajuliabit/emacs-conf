@@ -26,6 +26,7 @@
   :hook ((solidity-mode . prettier-js-mode)
          (js2-mode . prettier-js-mode)
          (typescript-ts-mode . prettier-js-mode)
+         (yaml-mode . prettier-js-mode)
          (before-save . run-prettier-before-save))
 )
 

@@ -4,8 +4,10 @@
 ;;; Shell configurations
 
 ;;; Code:
-(add-to-list 'load-path (expand-file-name "~/elisp"))
-(require 'aweshell)
+(use-package aweshell
+  :straight (aweshell :type git :host github :repo "manateelazycat/aweshell")
+  :load-path "~/elisp"
+  :bind (("M-SPC" . aweshell-new)))
 
 (provide 'feat.shell)
 ;;; feat.shell.el ends here

@@ -25,6 +25,8 @@
    ("C-c g" . counsel-ag)
    ("C-x C-f" . counsel-find-file)))
 
+(setq counsel-ag-base-command "ag --nocolor --nogroup --ignore test/mutation %s")
+
 ;;; ivy - generic completion frontend
 (use-package ivy
   :straight t
@@ -51,8 +53,6 @@
 
 (use-package wgrep-ag
   :straight t)
-
-
 
 ;;; swiper - isearch replacement
 (use-package swiper
@@ -208,6 +208,13 @@
   :config
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
+
+(use-package smerge-mode
+  :ensure nil
+  :hook
+  (prog-mode . smerge-mode)
+  ;; add a bind to replace the start C-C ^  for  C-C s 
+  )
 
 (provide 'feat.editor)
 ;;; feat.editor.el ends here

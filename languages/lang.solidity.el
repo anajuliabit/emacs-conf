@@ -24,7 +24,12 @@
 (use-package solidity-flycheck
   :straight t
   :defer 20
-  :ensure t)
+  :ensure t
+  :config
+  (setq solidity-flycheck-solc-additional-allow-paths
+        '("/lib"))
+  (setq solidity-flycheck-solc-remappings
+        '("@openzeppelin-contracts=lib/openzeppelin-contracts")))
 
 ;;(use-package company-solidity
 ;;  :straight t
